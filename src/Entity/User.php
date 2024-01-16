@@ -28,11 +28,6 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $upass = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $utype = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $uimage = null;
 
     public function getId(): ?int
     {
@@ -87,27 +82,4 @@ class User
         return $this;
     }
 
-    public function getUtype(): ?string
-    {
-        return $this->utype;
-    }
-
-    public function setUtype(string $utype): static
-    {
-        $this->utype = $utype;
-
-        return $this;
-    }
-
-    public function getUimage(): ?string
-    {
-        return $this->uimage;
-    }
-
-    public function setUimage(string $uimage): static
-    {
-        $this->uimage = $uimage;
-
-        return $this;
-    }
 }
