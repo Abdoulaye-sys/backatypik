@@ -6,7 +6,7 @@ use App\Repository\LogementRepository;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: LogementRepository::class)]
 #[ApiResource()]
@@ -25,23 +25,25 @@ class Logement
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(nullable: true)]
     private ?string $type_logement = null;
+
 
     #[ORM\Column]
     private ?int $capacity = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nombre_chambres = null;
-
-    #[ORM\Column]
+    
+    #[ORM\Column(nullable: true)]
     private ?int $nombre_lits = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    
+    #[ORM\Column(nullable: true)]
     private ?string $prix_nuit = null;
-
-    #[ORM\Column(type: Types::BINARY)]
-    private $image = null;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Vich\UploadableField(mapping: 'logement_images', fileNameProperty: 'image')]   
+    private ?string $image = null;
 
     public function getId(): ?int
     {
